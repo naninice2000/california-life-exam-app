@@ -1,41 +1,70 @@
-# California Life Insurance — Study Exam Lab
+# California Life Insurance Exam Prep — All Levels
 
-A complete **offline** local web app: **10 exams × 75 questions = 750 practice-question appearances**, each with multiple-choice answers and immediate explanatory feedback.
+A static, offline-capable study site combining the **three previously created versions** of the California Life-only insurance mock exams into a single GitHub repository.
 
-## Run on your laptop (Mac / Windows / Linux)
+## Overview
 
-1. Unzip the download.
-2. Open `california-life-exam-app/index.html` in Chrome, Edge, Safari, or Firefox by double-clicking it.
-3. Pick Exam 1 and select an answer. The correct answer and explanation appear immediately. Click **Next question** to proceed.
-4. Your answers are automatically stored in this browser's `localStorage`, so you can close the tab and resume later from the same browser and local file location.
+| Directory | Difficulty label | Based on | Exams | Questions per exam |
+|---|---|---|---:|---:|
+| `beginner/` | Beginner | Version 1 | 10 | 75 |
+| `intermediate/` | Intermediate | Version 2 | 10 | 75 |
+| `advanced/` | Advanced | Version 3 | 10 | 75 |
 
-No installation, Python, server, login, internet connection or API key is required. The two runtime files are `index.html` and `questions.js`.
+Total: **30 exam sets / 2,250 question placements**. The original question banks are preserved. The difficulty labels are intended progression, not independently validated PSI exam difficulty ratings. Some concepts and question patterns recur, particularly across versions.
 
-Optional local server: open a terminal in the unzipped folder and run `python3 -m http.server 8000`, then visit `http://localhost:8000`.
+## Run locally
 
-## Features
+Unzip the repository and double-click the **root** `index.html` to choose a level. No install, web server, package manager, API keys, or network connection is required for the quizzes.
 
-- 10 complete exams, 75 questions each
-- Study mode: **correct answer and explanation revealed as soon as you answer**
-- Scores, topical performance, missed-answer review, all-answer review
-- Question navigator and keyboard shortcuts (**1–4** to answer; arrow keys to move)
-- Saved progress (local browser), resume, retake, JSON export
-- Mobile-friendly responsive layout
+## Publish using GitHub Pages
 
-## Important scope disclosure
+1. Create a new public GitHub repository, e.g. `california-life-exam-prep`.
+2. Upload **all contents of this folder** to the repository root (including `index.html`, `.nojekyll`, and the three level directories), or use Git:
 
-This package contains **185 individually authored core questions**. To provide 10 full 75-question practice tests, topics are intentionally revisited with varied contextual lead-ins, shuffled options and different exam ordering. There are **750 separate question slots**, **not 750 independent underlying concepts**. This is helpful for spaced repetition but should not be confused with 750 substantively different questions. The questions are original study material, *not* actual or previously used PSI questions.
+   ```bash
+   git init
+   git add .
+   git commit -m "Add California life exam prep levels"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/california-life-exam-prep.git
+   git push -u origin main
+   ```
 
-Most questions teach stable general principles. California-specific legal rules can change and some provisions depend on contract wording. For the current regulatory requirements, use the official CDI resources below. This app does not replace an approved prelicensing ethics course.
+3. In the repository, open **Settings → Pages**.
+4. Under **Build and deployment**, choose **Deploy from a branch** and select **main / (root)**. Save.
+5. Once deployed, open `https://YOUR_USERNAME.github.io/california-life-exam-prep/`.
 
-## Official references
+Alternatively, you can use GitHub Desktop or the GitHub web uploader rather than terminal commands.
 
-- [California Department of Insurance — licensing examination objectives](https://www.insurance.ca.gov/0200-industry/0030-seek-pre-lic/psi-prelic-ed-obj.cfm)
-- [October 28, 2026 PSI candidate information bulletin](https://www.insurance.ca.gov/0200-industry/0020-apply-license/0100-indiv-resident/upload/PSI-Candidate-Information-Bulletin-English-10-28-2026.pdf): Life = **75 questions, 105 minutes, 60% passing score**.
-- [CDI Life license applicant procedures](https://www.insurance.ca.gov/0200-industry/0050-renew-license/0200-requirements/Life/app-proc-ind-res.cfm): review required 12 hours on ethics and California Insurance Code.
+## Save data and switching from an old app
 
-## Modify questions
+Each level retains its original localStorage key:
 
-- Edit the `DATA` rows in `build.py` (format `category|question|correct|wrong|wrong|wrong|explanation`).
-- Run `python3 build.py` to regenerate `questions.js` and `questions.json`.
-- The app itself reads `questions.js`; `questions.json` is provided for inspection and reuse.
+- Beginner: `ca-life-study-v1`
+- Intermediate: `ca-life-study-v2-unique`
+- Advanced: `ca-life-study-v3-scenarios`
+
+These are scoped to the browser **origin**, not your GitHub account. Old progress from a local `file://` URL does **not** automatically transfer to the GitHub Pages website. Each level saves separately under the same GitHub Pages origin, avoiding cross-level answer collisions. Clearing site data or switching browsers may remove progress. The current app does not have built-in cross-device sync.
+
+## Structure
+
+```text
+index.html                    # Landing page with difficulty selection
+.nojekyll                     # Let GitHub Pages serve static files directly
+beginner/index.html
+beginner/questions.js
+beginner/questions.json
+intermediate/index.html
+intermediate/questions.js
+intermediate/questions.json
+advanced/index.html
+advanced/questions.js
+advanced/questions.json
+```
+
+## Important
+
+- All questions are **unofficial practice content**, not PSI's confidential exam questions.
+- The 750 questions in a version are not necessarily 750 independent insurance concepts; several are transformed/related questions.
+- Verify current exam timing, blueprint, and legal requirements with the [California Department of Insurance](https://www.insurance.ca.gov/) and PSI.
+- This is a client-side static app; answers remain on your computer/in your browser unless you explicitly export or share data.
