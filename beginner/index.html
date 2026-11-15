@@ -11,7 +11,7 @@
 <footer class="footer">Built for independent California Life license study · Verify current laws and exam rules with the California Department of Insurance · <a href="https://www.insurance.ca.gov/0200-industry/0030-seek-pre-lic/psi-prelic-ed-obj.cfm" target="_blank" rel="noreferrer">CDI examination objectives</a> · <a href="https://www.insurance.ca.gov/0200-industry/0020-apply-license/0100-indiv-resident/upload/PSI-Candidate-Information-Bulletin-English-10-28-2026.pdf" target="_blank" rel="noreferrer">PSI 2026 bulletin</a></footer></main>
 <script src="questions.js"></script><script>
 'use strict';
-const EXAMS=window.EXAMS;const KEY='ca-life-study-v1';const $=id=>document.getElementById(id);let store={};try{store=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){store={}};let examIndex=null,index=0;
+const EXAMS=window.EXAMS;const KEY='ca-life-study-reviewed-2026-beginner-v1';const $=id=>document.getElementById(id);let store={};try{store=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){store={}};let examIndex=null,index=0;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){console.warn('Local storage unavailable',e)}};
 const getState=n=>store['exam'+n]||{answers:{},finished:false,startedAt:null};
 const state=()=>getState(examIndex+1);
